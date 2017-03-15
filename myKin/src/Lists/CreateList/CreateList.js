@@ -14,7 +14,8 @@ export default class CreateList extends Component {
         super(props, context);
 
         this.state = {
-            forKin: null
+            forKin: null,
+            items: []
         };
     }
 
@@ -22,6 +23,13 @@ export default class CreateList extends Component {
         console.log(this.props);
         const { navigate } = this.props.navigation;
         navigate('ChooseKin', { onChooseKin: kin => this.setState({ forKin: kin }) });
+    }
+
+    onSubmitItem(newItem) {
+        this.state.items.push(newItem);
+        console.log('pressed an item', this.state.items);
+        const { goBack } = this.props.navigation;
+        goBack();
     }
 
     render() {
@@ -32,6 +40,15 @@ export default class CreateList extends Component {
                     <Text style={appStyles.input}>
                         {this.state.forKin ? this.state.forKin.name : "Who's it for?"}
                     </Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => this.props.nav.push({
+                        name: 'createListItem',
+                        title: 'Create Item',
+                        passProps: { onSavePressed: this.onSubmitItem.bind(this) }
+                    })}
+                >
+                    <Text>Add Item</Text>
                 </TouchableHighlight>
             </View>
         );
