@@ -4,6 +4,7 @@ import NavBar from '../Shared/NavBar';
 import AllLists from './AllLists';
 import ListDetails from './ListDetails';
 import CreateList from './CreateList';
+import CreateListItem from './CreateListItem';
 import KinList from '../Kin/KinList';
 
 export default class Lists extends Component {
@@ -52,6 +53,8 @@ export default class Lists extends Component {
 
     onSavePressed() {}
 
+    onSaveItem() {}
+
     renderScene(route) {
         switch (route.name) {
             case 'detail':
@@ -63,6 +66,12 @@ export default class Lists extends Component {
                         onSavePressed={this.onSavePressed.bind(this)}
                         nav={this.nav}
                         forKin={this.state.createForKin}
+                    />
+                );
+            case 'createListItem':
+                return (
+                    <CreateListItem
+                        {...route.passProps}
                     />
                 );
             case 'chooseKin':

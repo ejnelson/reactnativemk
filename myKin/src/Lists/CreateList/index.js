@@ -8,8 +8,15 @@ export default class CreateList extends Component {
         super(props, context);
         console.log(props.nav);
         this.state = {
-            forKin: null
+            forKin: null,
+            items: []
         };
+    }
+
+    onSubmitItem(newItem) {
+        this.state.items.push(newItem);
+        console.log('pressed an item', this.state.items);
+        this.props.nav.pop();
     }
 
     render() {
@@ -20,6 +27,15 @@ export default class CreateList extends Component {
                     <Text style={appStyles.input}>
                         {this.props.forKin.name ? this.props.forKin.name : "Who's it for?"}
                     </Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => this.props.nav.push({
+                        name: 'createListItem',
+                        title: 'Create Item',
+                        passProps: { onSavePressed: this.onSubmitItem.bind(this) }
+                    })}
+                >
+                    <Text>Add Item</Text>
                 </TouchableHighlight>
             </View>
         );
