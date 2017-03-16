@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import TextInput from '../../Shared/TextInput';
 import navStyles from '../../Shared/NavBar/style';
-import NavButton from '../../Shared/NavBar/NavButton/NavButton';
+import NavButton from '../../Shared/NavBar/NavButton';
 
 const styles = StyleSheet.create({
     container: {
