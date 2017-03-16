@@ -28,7 +28,8 @@ export default class ListService {
                         {
                             id: 1,
                             name: 'Skateboard',
-                            purchaseUrl: 'www.amazon.com'
+                            purchaseUrl: 'www.amazon.com',
+                            claimedBy: true
                         },
                         {
                             id: 2,
