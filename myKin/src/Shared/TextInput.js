@@ -11,7 +11,16 @@ function CustomTextInput(props) {
             }}
         >
             <TextInput
-                style={{ height: 50 }}
+                style={{
+                    fontSize: 17,
+                    lineHeight: 24,
+                    marginTop: 10,
+                    marginBottom: 10,
+                    height: 24,
+                    color: '#585654'
+                }}
+                placeholderTextColor={'#D0CCCC'}
+                ref={props.getRef}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
             />
@@ -20,11 +29,13 @@ function CustomTextInput(props) {
 }
 
 CustomTextInput.propTypes = {
+    getRef: PropTypes.func,
     onChangeText: PropTypes.func,
     placeholder: PropTypes.string
 };
 
 CustomTextInput.defaultProps = {
+    getRef: () => {},
     onChangeText: null,
     placeholder: ''
 };
