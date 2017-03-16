@@ -5,6 +5,7 @@ import ListRow from '../../Shared/ListRow/ListRow';
 import AddButton from '../../Shared/NavBar/AddButton';
 import styles from './styles';
 import navStyles from '../../Shared/NavBar/style';
+import globalStyles from '../../styles';
 
 export default class AllLists extends Component {
     static navigationOptions = {
@@ -12,10 +13,16 @@ export default class AllLists extends Component {
         header: ({ navigate }) => ({
             left: <AddButton onPress={() => navigate('Create', {})} />,
             backTitle: null,
-            titleStyle: navStyles.navBarDefault
+            titleStyle: navStyles.navDefaultText
         })
     };
 
+    /**
+     * Class constructor. Creates a new ListView datasource with the lists from props and sets it
+     * on state.
+     * @param {*} props
+     * @param {*} context
+     */
     constructor(props, context) {
         super(props, context);
 
@@ -29,16 +36,26 @@ export default class AllLists extends Component {
         };
     }
 
-    componentWillReceiveProps() {
+    /**
+     * Gets the currently selected filter category and resets the ListView's datasource to reflect
+     * the new props
+     * @param {Object} newProps
+     */
+    componentWillReceiveProps(newProps) {
         const currentCategory = this.state.filterItems.filter(x => x.selected)[0].text;
         this.setState({
             dataSource: this.state.dataSource.cloneWithRows(
-                this.props.screenProps.lists[currentCategory]
+                newProps.screenProps.lists[currentCategory]
             )
         });
     }
 
-    onFilterPressed(item) {
+    /**
+     * Updates the page's filter headers so that the proper one is selected and updates the
+     * ListView's datasource to reflect the filtered items.
+     * @param {string} item The filterItem that was selected
+     */
+    handleFilterPressed(item) {
         const newFilterItems = this.state.filterItems.map(x => ({
             text: x.text,
             selected: x.text === item
@@ -67,22 +84,8 @@ export default class AllLists extends Component {
                 subHeading={''}
                 details={''}
                 rightButton={
-                    <TouchableHighlight
-                        style={{
-                            backgroundColor: 'orange',
-                            borderRadius: 5,
-                            justifyContent: 'center'
-                        }}
-                    >
-                        <Text
-                            style={{
-                                paddingTop: 5,
-                                paddingBottom: 5,
-                                paddingLeft: 15,
-                                paddingRight: 15,
-                                color: 'white'
-                            }}
-                        >
+                    <TouchableHighlight style={globalStyles.orangeButton}>
+                        <Text style={styles.buyButton}>
                             Buy
                         </Text>
                     </TouchableHighlight>
@@ -96,7 +99,7 @@ export default class AllLists extends Component {
             <View style={styles.container}>
                 <ListFilterHeader
                     items={this.state.filterItems}
-                    onPress={this.onFilterPressed.bind(this)}
+                    onPress={this.handleFilterPressed.bind(this)}
                 />
                 <ListView
                     contentInset={{ bottom: 49 }}

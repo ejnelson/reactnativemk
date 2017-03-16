@@ -21,6 +21,11 @@ export default StyleSheet.create({
         borderColor: '#D0CCCC',
         height: 50,
         margin: 10,
-        padding: 10,
+        padding: 10
     },
+    orangeButton: {
+        backgroundColor: '#FFA115',
+        borderRadius: 5,
+        justifyContent: 'center'
+    }
 });

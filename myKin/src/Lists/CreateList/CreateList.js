@@ -9,8 +9,8 @@ export default class CreateList extends Component {
     static navigationOptions = {
         title: 'Create New List',
         header: ({ state }) => ({
-            style: navStyles.navBarBlue,
-            titleStyle: navStyles.navBarBlue,
+            style: navStyles.navPrimaryBg,
+            titleStyle: navStyles.navPrimaryText,
             right: <NavButton onPress={state.params.handleSavePressed}>Save</NavButton>
         })
     };
@@ -78,7 +78,8 @@ export default class CreateList extends Component {
 CreateList.propTypes = {
     navigation: React.PropTypes.shape({
         navigate: React.PropTypes.func.isRequired,
-        goBack: React.PropTypes.func.isRequired
+        goBack: React.PropTypes.func.isRequired,
+        setParams: React.PropTypes.func.isRequired
     }).isRequired,
     screenProps: React.PropTypes.shape({
         saveNewList: React.PropTypes.func.isRequired

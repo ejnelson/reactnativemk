@@ -4,7 +4,7 @@ import navStyles from '../../Shared/NavBar/style';
 
 export default class CreateKin extends Component {
     static navigationOptions = {
-        header: { styles: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
+        header: { styles: navStyles.navPrimaryBg, titleStyle: navStyles.navPrimaryText }
     };
 
     constructor(props, context) {

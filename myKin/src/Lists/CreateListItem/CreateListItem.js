@@ -7,7 +7,7 @@ import navStyles from '../../Shared/NavBar/style';
 export default class CreateListItem extends Component {
     static navigationOptions = {
         title: 'Add Item',
-        header: { style: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
+        header: { style: navStyles.navPrimaryBg, titleStyle: navStyles.navPrimaryText }
     };
 
     constructor(props, context) {

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import globalStyles from '../../styles';
 
 const styles = StyleSheet.create({
     container: {
@@ -30,12 +31,12 @@ export default class ListFilterHeader extends Component {
     }
 
     render() {
-        const buttons = this.props.items.map((item, index) => {
+        const buttons = this.props.items.map(item => {
             const isSelected = item.selected;
             return (
-                <View key={index}>
+                <View key={item.text}>
                     <TouchableHighlight
-                        style={[isSelected ? styles.selected : {}, styles.button]}
+                        style={[isSelected ? globalStyles.orangeButton : {}, styles.button]}
                         onPress={() => this.onPress(item)}
                     >
                         <Text style={isSelected ? styles.selectedText : {}}>{item.text}</Text>

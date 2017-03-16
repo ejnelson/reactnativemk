@@ -43,7 +43,6 @@ export default class Lists extends Component {
     }
 
     saveNewList(newList) {
-        console.log(newList);
         this.props.screenProps.listService
             .createList(newList)
             .then(() => {})
@@ -76,7 +75,8 @@ export default class Lists extends Component {
 Lists.propTypes = {
     screenProps: PropTypes.shape({
         listService: PropTypes.shape({
-            register: PropTypes.func.isRequired
+            register: PropTypes.func.isRequired,
+            createList: PropTypes.func.isRequired
         }).isRequired,
         kinService: PropTypes.shape({
             register: PropTypes.func.isRequired

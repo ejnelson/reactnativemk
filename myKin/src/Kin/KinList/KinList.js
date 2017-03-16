@@ -18,13 +18,13 @@ export default class KinList extends Component {
                 return {
                     left: <AddButton onPress={() => navigate('Create')} />,
                     backTitle: null,
-                    titleStyle: navStyles.navBarDefault
+                    titleStyle: navStyles.navDefaultText
                 };
             }
             return {
                 backTitle: null,
-                style: navStyles.navBarBlue,
-                titleStyle: navStyles.navBarBlue
+                style: navStyles.navPrimaryBg,
+                titleStyle: navStyles.navPrimaryText
             };
         }
     };

@@ -8,7 +8,7 @@ import navStyles from '../../Shared/NavBar/style';
 export default class KinDetail extends Component {
     static navigationOptions = {
         title: 'My Kin',
-        header: { style: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
+        header: { style: navStyles.navPrimaryBg, titleStyle: navStyles.navPrimaryText }
     };
 
     render() {
@@ -32,8 +32,8 @@ export default class KinDetail extends Component {
                     <View style={{ borderBottomWidth: 1 }}>
                         <Text style={styles.subHeadingText}>About</Text>
                     </View>
-                    {params.details.map((detail, index) => (
-                        <View key={index} style={styles.detailGroup}>
+                    {params.details.map(detail => (
+                        <View key={detail.value} style={styles.detailGroup}>
                             <Text style={[appStyles.fadedText, styles.detailTypeText]}>
                                 {detail.type}:{' '}
                             </Text>

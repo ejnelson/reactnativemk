@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    navBarBlue: {
-        backgroundColor: '#00AFD8',
+    navPrimaryBg: {
+        backgroundColor: '#00AFD8'
     },
-    navBarDefault: {
+    navPrimaryText: {
+        color: '#fff'
+    },
+    navDefaultText: {
         color: '#00AFD8'
     }
 });

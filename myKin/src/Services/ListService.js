@@ -52,8 +52,7 @@ export default class ListService {
     }
 
     createList(newList) {
-        console.log(newList);
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             this.lists['Kin Lists'].push(newList);
             this.registeredCallbacks.forEach(callback => callback(this.lists));
             resolve();
