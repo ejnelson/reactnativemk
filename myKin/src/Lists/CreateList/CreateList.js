@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
-import styles from '../styles';
-import appStyles from '../../styles';
+import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import TextInput from '../../Shared/TextInput/TextInput';
 import navStyles from '../../Shared/NavBar/style';
 import NavButton from '../../Shared/NavBar/NavButton/NavButton';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: '#fff'
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderColor: '#D0CCCC',
+        margin: 10
+    },
+    text: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 17,
+        fontWeight: '500',
+        lineHeight: 24
+    },
+    placeholderColor: { color: '#D0CCCC' },
+    valueColor: { color: '#585654' }
+});
 
 export default class CreateList extends Component {
     static navigationOptions = {
@@ -53,22 +76,31 @@ export default class CreateList extends Component {
         return (
             <View style={styles.container}>
                 <TextInput
-                    style={appStyles.input}
                     onChangeText={name => this.setState({ name })}
                     placeholder="Name of List"
                 />
-                <TouchableHighlight onPress={this.onChooseKinPressed.bind(this)}>
-                    <Text style={appStyles.input}>
-                        {this.state.forKin ? this.state.forKin.name : "Who's it for?"}
+                <TouchableHighlight style={styles.row} onPress={this.onChooseKinPressed.bind(this)}>
+                    <Text
+                        style={[
+                            this.state.forKin ? styles.valueColor : styles.placeholderColor,
+                            styles.text
+                        ]}
+                    >
+                        {this.state.forKin ? `For: ${this.state.forKin.name}` : "Who's it for?"}
                     </Text>
                 </TouchableHighlight>
-                {this.state.items.map(item => <Text key={item.name}>{item.name}</Text>)}
+                {this.state.items.map(item => (
+                    <View key={item.name} style={styles.row}>
+                        <Text style={[styles.valueColor, styles.text]}>{item.name}</Text>
+                    </View>
+                ))}
                 <TouchableHighlight
+                    style={styles.row}
                     onPress={() => this.props.navigation.navigate('CreateListItem', {
                         onSubmit: this.onSubmitItem.bind(this)
                     })}
                 >
-                    <Text>Add Item</Text>
+                    <Text style={[styles.placeholderColor, styles.text]}>Add Item</Text>
                 </TouchableHighlight>
             </View>
         );

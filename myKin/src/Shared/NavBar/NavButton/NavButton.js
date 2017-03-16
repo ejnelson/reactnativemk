@@ -5,7 +5,7 @@ import styles from '../style';
 function NavButton(props) {
     return (
         <TouchableHighlight onPress={props.onPress} style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={styles.navPrimaryText}>
+            <Text style={[styles.navPrimaryText, { paddingLeft: 10, paddingRight: 10 }]}>
                 {props.children}
             </Text>
         </TouchableHighlight>
