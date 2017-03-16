@@ -10,7 +10,7 @@ export default class AllLists extends Component {
     static navigationOptions = {
         title: 'Lists',
         header: ({ navigate }) => ({
-            left: <AddButton onPress={() => navigate('Create')} />,
+            left: <AddButton onPress={() => navigate('Create', {})} />,
             backTitle: null,
             titleStyle: navStyles.navBarDefault
         })

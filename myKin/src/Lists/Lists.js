@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import AllLists from './AllLists/AllLists';
 import ListDetails from './ListDetails/ListDetails';
 import CreateList from './CreateList/CreateList';
+import CreateListItem from './CreateListItem/CreateListItem';
 import KinList from '../Kin/KinList/KinList';
 
 export default class Lists extends Component {
@@ -41,7 +42,13 @@ export default class Lists extends Component {
         this.setState({ createForKin: rowData });
     }
 
-    onSavePressed() {}
+    saveNewList(newList) {
+        console.log(newList);
+        this.props.screenProps.listService
+            .createList(newList)
+            .then(() => {})
+            .catch(err => console.log(err));
+    }
 
     render() {
         const StackNav = StackNavigator({
@@ -50,10 +57,19 @@ export default class Lists extends Component {
             },
             Detail: { screen: ListDetails },
             Create: { screen: CreateList },
-            ChooseKin: { screen: KinList }
+            ChooseKin: { screen: KinList },
+            CreateListItem: { screen: CreateListItem }
         });
 
-        return <StackNav screenProps={{ lists: this.state.lists, kin: this.state.kin }} />;
+        return (
+            <StackNav
+                screenProps={{
+                    lists: this.state.lists,
+                    kin: this.state.kin,
+                    saveNewList: this.saveNewList.bind(this)
+                }}
+            />
+        );
     }
 }
 

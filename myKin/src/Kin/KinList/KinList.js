@@ -14,7 +14,6 @@ export default class KinList extends Component {
     static navigationOptions = {
         title: 'My Kin',
         header: ({ navigate, state }) => {
-            console.log(state.routeNam);
             if (state.routeName === 'List') {
                 return {
                     left: <AddButton onPress={() => navigate('Create')} />,
