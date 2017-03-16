@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         borderBottomWidth: 1,
         borderColor: '#D0CCCC',
         margin: 10
@@ -92,6 +93,13 @@ export default class CreateList extends Component {
                 {this.state.items.map(item => (
                     <View key={item.name} style={styles.row}>
                         <Text style={[styles.valueColor, styles.text]}>{item.name}</Text>
+                        <TouchableHighlight
+                            onPress={() => {
+                                const items = this.state.items;
+                                items.splice(items.indexOf(item), 1);
+                                this.setState({ items });
+                            }}
+                        ><Text>X</Text></TouchableHighlight>
                     </View>
                 ))}
                 <TouchableHighlight

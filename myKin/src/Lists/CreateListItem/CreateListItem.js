@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import TextInput from '../../Shared/TextInput';
-import appStyles from '../../styles';
 import navStyles from '../../Shared/NavBar/style';
 
 const styles = StyleSheet.create({
@@ -75,6 +74,7 @@ export default class CreateListItem extends Component {
                     getRef={component => this.notesInput = component}
                     onChangeText={details => this.setState({ details })}
                     placeholder="Notes"
+                    multiline
                 />
                 <View style={styles.buttonStack}>
                     <TouchableHighlight

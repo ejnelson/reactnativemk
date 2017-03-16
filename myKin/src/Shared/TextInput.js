@@ -23,6 +23,7 @@ function CustomTextInput(props) {
                 ref={props.getRef}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
+                multiline={props.multiline}
             />
         </View>
     );
@@ -31,13 +32,15 @@ function CustomTextInput(props) {
 CustomTextInput.propTypes = {
     getRef: PropTypes.func,
     onChangeText: PropTypes.func,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    multiline: PropTypes.bool
 };
 
 CustomTextInput.defaultProps = {
     getRef: () => {},
     onChangeText: null,
-    placeholder: ''
+    placeholder: '',
+    multiline: false
 };
 
 export default CustomTextInput;
