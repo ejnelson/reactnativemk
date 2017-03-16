@@ -18,6 +18,7 @@ export default class KinList extends Component {
                 return {
                     left: <AddButton onPress={() => navigate('Create')} />,
                     backTitle: null,
+                    style: navStyles.navDefaultBg,
                     titleStyle: navStyles.navDefaultText
                 };
             }
@@ -125,20 +126,22 @@ export default class KinList extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={{ flex: 1 }}>
                 <ListFilterHeader
                     items={this.state.filterItems}
                     onPress={this.onFilterPressed.bind(this)}
                 />
-                <ListView
-                    removeClippedSubviews={false}
-                    contentInset={{ bottom: 49 }}
-                    automaticallyAdjustContentInsets={false}
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}
-                    renderSectionHeader={this.renderSectionHeader.bind(this)}
-                    enableEmptySections
-                />
+                <View style={styles.container}>
+                    <ListView
+                        removeClippedSubviews={false}
+                        contentInset={{ bottom: 49 }}
+                        automaticallyAdjustContentInsets={false}
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow.bind(this)}
+                        renderSectionHeader={this.renderSectionHeader.bind(this)}
+                        enableEmptySections
+                    />
+                </View>
             </View>
         );
     }

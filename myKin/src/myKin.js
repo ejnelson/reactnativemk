@@ -19,7 +19,6 @@ export default class Main extends Component {
 
     render() {
         const MainNav = TabNavigator({
-            initialRouteName: { screen: Lists },
             'My Kin': {
                 screen: Kin
             },
