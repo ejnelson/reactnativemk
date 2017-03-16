@@ -18,15 +18,17 @@ export default class Main extends Component {
     }
 
     render() {
-        const MainNav = TabNavigator({
-            initialRouteName: { screen: Lists },
-            'My Kin': {
-                screen: Kin
+        const MainNav = TabNavigator(
+            {
+                'My Kin': {
+                    screen: Kin
+                },
+                Lists: {
+                    screen: Lists
+                }
             },
-            Lists: {
-                screen: Lists
-            }
-        });
+            { initialRouteName: 'Lists' }
+        );
 
         return (
             <MainNav

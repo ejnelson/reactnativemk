@@ -13,7 +13,8 @@ export default class AllLists extends Component {
         header: ({ navigate }) => ({
             left: <AddButton onPress={() => navigate('Create', {})} />,
             backTitle: null,
-            titleStyle: navStyles.navDefaultText
+            titleStyle: navStyles.navDefaultText,
+            style: navStyles.navDefaultBg
         })
     };
 
@@ -96,18 +97,20 @@ export default class AllLists extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={{ flex: 1 }}>
                 <ListFilterHeader
                     items={this.state.filterItems}
                     onPress={this.handleFilterPressed.bind(this)}
                 />
-                <ListView
-                    contentInset={{ bottom: 49 }}
-                    automaticallyAdjustContentInsets={false}
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}
-                    enableEmptySections
-                />
+                <View style={styles.container}>
+                    <ListView
+                        contentInset={{ bottom: 49 }}
+                        automaticallyAdjustContentInsets={false}
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow.bind(this)}
+                        enableEmptySections
+                    />
+                </View>
             </View>
         );
     }

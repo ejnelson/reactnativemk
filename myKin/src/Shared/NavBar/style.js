@@ -7,6 +7,9 @@ export default StyleSheet.create({
     navPrimaryText: {
         color: '#fff'
     },
+    navDefaultBg: {
+        backgroundColor: '#EEEEEE'
+    },
     navDefaultText: {
         color: '#00AFD8'
     }

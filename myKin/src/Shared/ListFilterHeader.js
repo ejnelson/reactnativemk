@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
-import globalStyles from '../../styles';
+import globalStyles from '../styles';
+import navStyles from '../Shared/NavBar/style';
 
 const styles = StyleSheet.create({
     container: {
@@ -44,7 +45,7 @@ export default class ListFilterHeader extends Component {
                 </View>
             );
         });
-        return <View style={styles.container}>{buttons}</View>;
+        return <View style={[styles.container, navStyles.navDefaultBg]}>{buttons}</View>;
     }
 }
 

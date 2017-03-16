@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
-import TextInput from '../../Shared/TextInput';
-import navStyles from '../../Shared/NavBar/style';
-import NavButton from '../../Shared/NavBar/NavButton/NavButton';
+import { View, Text, TouchableHighlight, StyleSheet, Alert } from 'react-native';
+import TextInput from '../Shared/TextInput';
+import navStyles from '../Shared/NavBar/style';
+import NavButton from '../Shared/NavBar/NavButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         borderBottomWidth: 1,
         borderColor: '#D0CCCC',
         margin: 10
@@ -57,19 +58,35 @@ export default class CreateList extends Component {
         navigate('ChooseKin', { onChooseKin: kin => this.setState({ forKin: kin }) });
     }
 
-    onSubmitItem(newItem) {
+    handleSubmitItem(newItem) {
         this.setState({
             items: this.state.items.concat([newItem])
         });
     }
 
+    validateInput() {
+        if (this.state.name.length < 1) {
+            Alert.alert('Woah!', 'The list name cannot be blank');
+            return false;
+        } else if (!this.state.forKin) {
+            Alert.alert('Woah!', 'You need to choose a Kin for this list');
+            return false;
+        } else if (this.state.items.length < 1) {
+            Alert.alert('Woah!', 'This list needs at least one item');
+            return false;
+        }
+        return true;
+    }
+
     handleSavePressed() {
-        this.props.screenProps.saveNewList({
-            name: this.state.name,
-            for: this.state.forKin,
-            items: this.state.items
-        });
-        this.props.navigation.goBack();
+        if (this.validateInput()) {
+            this.props.screenProps.saveNewList({
+                name: this.state.name,
+                for: this.state.forKin,
+                items: this.state.items
+            });
+            this.props.navigation.goBack();
+        }
     }
 
     render() {
@@ -92,12 +109,19 @@ export default class CreateList extends Component {
                 {this.state.items.map(item => (
                     <View key={item.name} style={styles.row}>
                         <Text style={[styles.valueColor, styles.text]}>{item.name}</Text>
+                        <TouchableHighlight
+                            onPress={() => {
+                                const items = this.state.items;
+                                items.splice(items.indexOf(item), 1);
+                                this.setState({ items });
+                            }}
+                        ><Text>X</Text></TouchableHighlight>
                     </View>
                 ))}
                 <TouchableHighlight
                     style={styles.row}
                     onPress={() => this.props.navigation.navigate('CreateListItem', {
-                        onSubmit: this.onSubmitItem.bind(this)
+                        onSubmit: this.handleSubmitItem.bind(this)
                     })}
                 >
                     <Text style={[styles.placeholderColor, styles.text]}>Add Item</Text>

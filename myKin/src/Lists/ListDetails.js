@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import ListRow from '../../Shared/ListRow/ListRow';
-import styles from '../styles';
-import navStyles from '../../Shared/NavBar/style';
+import ListRow from '../Shared/ListRow/ListRow';
+import navStyles from '../Shared/NavBar/style';
 
 export default class ListDetails extends Component {
     static navigationOptions = {
@@ -38,7 +37,7 @@ export default class ListDetails extends Component {
         return (
             <ListView
                 removeClippedSubviews={false}
-                style={[styles.container]}
+                style={{ flex: 1, backgroundColor: '#fff' }}
                 contentInset={{ bottom: 49 }}
                 automaticallyAdjustContentInsets={false}
                 dataSource={this.state.dataSource}
