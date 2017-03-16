@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { ListView, View, Text, TouchableHighlight } from 'react-native';
 import ListRow from '../Shared/ListRow/ListRow';
 import navStyles from '../Shared/NavBar/style';
@@ -54,12 +54,13 @@ export default class ListDetails extends Component {
                     justifyContent: 'center',
                     borderRadius: 20,
                     borderWidth: 1,
-                    borderColor: '#D0CCCC',
-                    padding: 8
+                    borderColor: '#D0CCCC'
                 }}
             >
-                <TouchableHighlight>
-                    <Text style={{ fontSize: 12, color: '#D0CCCC' }}>Shopping List</Text>
+                <TouchableHighlight onPress={() => this.props.screenProps.onClaimItem(item)}>
+                    <Text style={{ fontSize: 12, color: '#D0CCCC', padding: 8 }}>
+                        Shopping List
+                    </Text>
                 </TouchableHighlight>
             </View>
         );
@@ -91,11 +92,14 @@ export default class ListDetails extends Component {
 }
 
 ListDetails.propTypes = {
-    navigation: React.PropTypes.shape({
-        state: React.PropTypes.shape({
-            params: React.PropTypes.shape({
-                items: React.PropTypes.array.isRequired
+    navigation: PropTypes.shape({
+        state: PropTypes.shape({
+            params: PropTypes.shape({
+                items: PropTypes.array.isRequired
             }).isRequired
         }).isRequired
+    }).isRequired,
+    screenProps: PropTypes.shape({
+        onClaimItem: PropTypes.func.isRequired
     }).isRequired
 };

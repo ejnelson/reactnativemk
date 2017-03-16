@@ -49,6 +49,11 @@ export default class Lists extends Component {
             .catch(err => console.log(err));
     }
 
+    claimItem(itemToClaim) {
+        console.log('Claiming', itemToClaim);
+        this.props.screenProps.listService.claimItem(itemToClaim.id).then(() => {});
+    }
+
     render() {
         const StackNav = StackNavigator({
             List: {
@@ -65,7 +70,8 @@ export default class Lists extends Component {
                 screenProps={{
                     lists: this.state.lists,
                     kin: this.state.kin,
-                    saveNewList: this.saveNewList.bind(this)
+                    saveNewList: this.saveNewList.bind(this),
+                    onClaimItem: this.claimItem.bind(this)
                 }}
             />
         );
@@ -76,7 +82,8 @@ Lists.propTypes = {
     screenProps: PropTypes.shape({
         listService: PropTypes.shape({
             register: PropTypes.func.isRequired,
-            createList: PropTypes.func.isRequired
+            createList: PropTypes.func.isRequired,
+            claimItem: PropTypes.func.isRequired
         }).isRequired,
         kinService: PropTypes.shape({
             register: PropTypes.func.isRequired

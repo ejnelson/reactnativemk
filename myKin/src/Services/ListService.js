@@ -7,16 +7,6 @@ export default class ListService {
                     id: 1,
                     name: 'Skateboard',
                     purchaseUrl: 'www.amazon.com'
-                },
-                {
-                    id: 2,
-                    name: "Dickie's Overalls",
-                    purchaseUrl: 'www.amazon.com'
-                },
-                {
-                    id: 3,
-                    name: 'Floral Blouse',
-                    purchaseUrl: 'www.amazon.com'
                 }
             ],
             'Kin Lists': [
@@ -69,7 +59,13 @@ export default class ListService {
     }
 
     claimItem(itemId, userId) {
-        return new Promise((resolve, reject) => reject('unimplemented'));
+        return new Promise((resolve, reject) => {
+            const item = this.lists['Kin Lists'][0].items.find(i => i.id === itemId);
+            item.claimedBy = true;
+            this.lists['Shopping List'].push(item);
+            this.registeredCallbacks.forEach(callback => callback(this.lists));
+            resolve();
+        });
     }
 
     unClaimItem(itemId) {
