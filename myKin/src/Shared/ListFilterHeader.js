@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
-import globalStyles from '../../styles';
-import navStyles from '../../Shared/NavBar/style';
+import globalStyles from '../styles';
+import navStyles from '../Shared/NavBar/style';
 
 const styles = StyleSheet.create({
     container: {
