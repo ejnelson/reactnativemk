@@ -22,7 +22,7 @@ export default class ListService {
             'Kin Lists': [
                 {
                     id: 1,
-                    for: { firstName: 'Alexander' },
+                    for: { name: 'Alexander' },
                     name: 'Birthday List',
                     items: [
                         {

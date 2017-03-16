@@ -6,7 +6,7 @@ import navStyles from '../../Shared/NavBar/style';
 
 export default class ListDetails extends Component {
     static navigationOptions = {
-        title: ({ state }) => `${state.params.for.firstName}'s List`,
+        title: ({ state }) => `${state.params.for.name}'s List`,
         header: { style: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
     };
 

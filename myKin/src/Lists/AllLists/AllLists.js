@@ -53,7 +53,7 @@ export default class AllLists extends Component {
         if (list.items) {
             return (
                 <ListRow
-                    heading={`${list.for.firstName}'s ${list.name}`}
+                    heading={`${list.for.name}'s ${list.name}`}
                     subHeading={''}
                     details={`${list.items.length} Items`}
                     onPress={() => this.props.navigation.navigate('Detail', list)}
