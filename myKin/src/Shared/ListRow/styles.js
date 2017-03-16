@@ -10,7 +10,7 @@ export default StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
         borderBottomWidth: 1,
-        borderColor: '#aaaaaa'
+        borderColor: '#D0CCCC'
     },
     textContainer: {
         flex: 1

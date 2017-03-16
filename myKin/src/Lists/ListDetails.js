@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView, View, Text } from 'react-native';
+import { ListView, View, Text, TouchableHighlight } from 'react-native';
 import ListRow from '../Shared/ListRow/ListRow';
 import navStyles from '../Shared/NavBar/style';
 
@@ -31,9 +31,38 @@ export default class ListDetails extends Component {
 
     renderRightButton(item) {
         if (item.claimedBy) {
-            return <View><Text>Added</Text></View>;
+            return (
+                <View
+                    style={[
+                        {
+                            justifyContent: 'center',
+                            borderRadius: 20,
+                            padding: 8
+                        },
+                        navStyles.navPrimaryBg
+                    ]}
+                >
+                    <TouchableHighlight>
+                        <Text style={{ color: '#fff', fontSize: 12 }}>Added</Text>
+                    </TouchableHighlight>
+                </View>
+            );
         }
-        return <View><Text>Add to Shopping List</Text></View>;
+        return (
+            <View
+                style={{
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                    borderWidth: 1,
+                    borderColor: '#D0CCCC',
+                    padding: 8
+                }}
+            >
+                <TouchableHighlight>
+                    <Text style={{ fontSize: 12, color: '#D0CCCC' }}>Shopping List</Text>
+                </TouchableHighlight>
+            </View>
+        );
     }
 
     renderRow(rowData) {
