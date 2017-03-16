@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, Text, TouchableHighlight, StyleSheet, Alert } from 'react-native';
 import TextInput from '../../Shared/TextInput';
 import navStyles from '../../Shared/NavBar/style';
 
@@ -51,10 +51,43 @@ export default class CreateListItem extends Component {
         this.clearText = this.clearText.bind(this);
     }
 
+    validateInput() {
+        if (this.state.name.length < 1) {
+            Alert.alert('Woah!', 'The item name cannot be blank');
+            return false;
+        }
+        return true;
+    }
+
     clearText() {
         this.nameInput.setNativeProps({ text: '' });
         this.urlInput.setNativeProps({ text: '' });
         this.notesInput.setNativeProps({ text: '' });
+    }
+
+    handleSaveAndReturn() {
+        if (this.validateInput()) {
+            const { goBack, state } = this.props.navigation;
+            state.params.onSubmit({
+                name: this.state.name,
+                purchaseUrl: this.state.purchaseUrl,
+                details: this.state.details
+            });
+            goBack();
+        }
+    }
+
+    handleSaveAndStay() {
+        if (this.validateInput()) {
+            const { state } = this.props.navigation;
+            state.params.onSubmit({
+                name: this.state.name,
+                purchaseUrl: this.state.purchaseUrl,
+                details: this.state.details
+            });
+            this.setState({ name: '', purchaseUrl: '', details: '' });
+            this.clearText();
+        }
     }
 
     render() {
@@ -79,33 +112,14 @@ export default class CreateListItem extends Component {
                 <View style={styles.buttonStack}>
                     <TouchableHighlight
                         style={styles.button}
-                        onPress={() => {
-                            const { goBack, state } = this.props.navigation;
-                            state.params.onSubmit({
-                                name: this.state.name,
-                                purchaseUrl: this.state.purchaseUrl,
-                                details: this.state.details
-                            });
-                            goBack();
-                        }}
+                        onPress={this.handleSaveAndReturn.bind(this)}
                     >
                         <Text style={[styles.text, styles.orangeText]}>
                             Save Item to List
                         </Text>
                     </TouchableHighlight>
                     <View style={[styles.button, styles.orangeBg]}>
-                        <TouchableHighlight
-                            onPress={() => {
-                                const { state } = this.props.navigation;
-                                state.params.onSubmit({
-                                    name: this.state.name,
-                                    purchaseUrl: this.state.purchaseUrl,
-                                    details: this.state.details
-                                });
-                                this.setState({ name: '', purchaseUrl: '', details: '' });
-                                this.clearText();
-                            }}
-                        >
+                        <TouchableHighlight onPress={this.handleSaveAndStay.bind(this)}>
                             <Text style={[styles.text, styles.whiteText]}>Save & Add Another</Text>
                         </TouchableHighlight>
                     </View>

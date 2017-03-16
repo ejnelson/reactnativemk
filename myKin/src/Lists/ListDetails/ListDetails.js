@@ -38,7 +38,7 @@ export default class ListDetails extends Component {
         return (
             <ListView
                 removeClippedSubviews={false}
-                style={[styles.container]}
+                style={{ flex: 1, backgroundColor: '#fff' }}
                 contentInset={{ bottom: 49 }}
                 automaticallyAdjustContentInsets={false}
                 dataSource={this.state.dataSource}
