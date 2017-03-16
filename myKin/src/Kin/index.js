@@ -12,6 +12,8 @@ import NavBar from '../Shared/NavBar';
  */
 export default class Kin extends Component {
     constructor(props, context) {
+        console.log(props);
+
         super(props, context);
 
         this.state = {
@@ -19,7 +21,7 @@ export default class Kin extends Component {
         };
     }
     componentDidMount() {
-        this.props.kinService.register(kin => {
+        this.props.screenProps.kinService.register(kin => {
             this.setState({ kin }, () => {
                 this.forceUpdate();
             });
@@ -62,7 +64,9 @@ export default class Kin extends Component {
 }
 
 Kin.propTypes = {
-    kinService: PropTypes.shape({
-        register: PropTypes.func.isRequired
+    screenProps: PropTypes.shape({
+        kinService: PropTypes.shape({
+            register: PropTypes.func.isRequired
+        }).isRequired
     }).isRequired
 };

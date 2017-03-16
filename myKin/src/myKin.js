@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import MainComponent from './render';
+import { TabNavigator } from 'react-navigation';
+import Kin from './Kin';
+import Lists from './Lists';
 import UserService from './Services/UserService';
 import KinService from './Services/KinService';
 import ListService from './Services/ListService';
@@ -9,30 +11,30 @@ export default class Main extends Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
-            selectedTab: 'lists'
-        };
-
         this.userService = new UserService();
         this.kinService = new KinService();
         this.listService = new ListService();
         this.eventService = new EventService();
     }
 
-    navigate(navigateTo) {
-        this.setState({
-            selectedTab: navigateTo
-        });
-    }
-
     render() {
+        const MainNav = TabNavigator({
+            'My Kin': {
+                screen: Kin
+            },
+            Lists: {
+                screen: Lists
+            }
+        });
+
         return (
-            <MainComponent
-                selectedTab={this.state.selectedTab}
-                navigate={this.navigate.bind(this)}
-                kinService={this.kinService}
-                kin={this.props.kin}
-                listService={this.listService}
+            <MainNav
+                screenProps={{
+                    kinService: this.kinService,
+                    listService: this.listService,
+                    userService: this.userService,
+                    eventService: this.eventService
+                }}
             />
         );
     }

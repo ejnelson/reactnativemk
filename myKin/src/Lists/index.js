@@ -21,12 +21,12 @@ export default class Lists extends Component {
     }
 
     componentDidMount() {
-        this.props.listService.register(lists => {
+        this.props.screenProps.listService.register(lists => {
             this.setState({ lists }, () => {
                 this.forceUpdate();
             });
         });
-        this.props.kinService.register(kin => {
+        this.props.screenProps.kinService.register(kin => {
             this.setState({ kin }, () => {
                 this.forceUpdate();
             });
@@ -100,10 +100,12 @@ export default class Lists extends Component {
 }
 
 Lists.propTypes = {
-    listService: PropTypes.shape({
-        register: PropTypes.func.isRequired
-    }).isRequired,
-    kinService: PropTypes.shape({
-        register: PropTypes.func.isRequired
+    screenProps: PropTypes.shape({
+        listService: PropTypes.shape({
+            register: PropTypes.func.isRequired
+        }).isRequired,
+        kinService: PropTypes.shape({
+            register: PropTypes.func.isRequired
+        }).isRequired
     }).isRequired
 };
