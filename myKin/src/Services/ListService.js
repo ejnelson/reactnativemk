@@ -52,7 +52,12 @@ export default class ListService {
     }
 
     createList(newList) {
-        return new Promise((resolve, reject) => reject('unimplemented'));
+        console.log(newList);
+        return new Promise((resolve, reject) => {
+            this.lists['Kin Lists'].push(newList);
+            this.registeredCallbacks.forEach(callback => callback(this.lists));
+            resolve();
+        });
     }
 
     createItem(newItem) {
