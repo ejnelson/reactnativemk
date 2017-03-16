@@ -4,13 +4,15 @@ import ListFilterHeader from '../../Shared/ListFilterHeader';
 import ListRow from '../../Shared/ListRow/ListRow';
 import AddButton from '../../Shared/NavBar/AddButton';
 import styles from './styles';
+import navStyles from '../../Shared/NavBar/style';
 
 export default class AllLists extends Component {
     static navigationOptions = {
         title: 'Lists',
         header: ({ navigate }) => ({
             left: <AddButton onPress={() => navigate('Create')} />,
-            backTitle: null
+            backTitle: null,
+            titleStyle: navStyles.navBarDefault
         })
     };
 

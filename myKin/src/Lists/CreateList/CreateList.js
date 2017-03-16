@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableHighlight } from 'react-native';
 import styles from '../styles';
 import appStyles from '../../styles';
+import navStyles from '../../Shared/NavBar/style';
 
 export default class CreateList extends Component {
     static navigationOptions = {
-        title: 'Create a List'
-    }
+        title: 'Create a List',
+        header: { style: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
+    };
 
     constructor(props, context) {
         super(props, context);

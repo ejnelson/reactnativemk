@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import CreateKinComponent from './render';
+import navStyles from '../../Shared/NavBar/style';
 
 export default class CreateKin extends Component {
+    static navigationOptions = {
+        header: { styles: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
+    };
+
     constructor(props, context) {
         super(props, context);
 

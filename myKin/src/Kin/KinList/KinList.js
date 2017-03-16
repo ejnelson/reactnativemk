@@ -6,6 +6,7 @@ import ListFilterHeader from '../../Shared/ListFilterHeader';
 import AddButton from '../../Shared/NavBar/AddButton';
 import FAMILY_CATEGORIES from './FamilyCategories';
 import styles from './styles';
+import navStyles from '../../Shared/NavBar/style';
 
 const UNFILTER_NAME = 'All Kin';
 
@@ -13,13 +14,19 @@ export default class KinList extends Component {
     static navigationOptions = {
         title: 'My Kin',
         header: ({ navigate, state }) => {
+            console.log(state.routeNam);
             if (state.routeName === 'List') {
                 return {
                     left: <AddButton onPress={() => navigate('Create')} />,
-                    backTitle: null
+                    backTitle: null,
+                    titleStyle: navStyles.navBarDefault
                 };
             }
-            return { backTitle: null };
+            return {
+                backTitle: null,
+                style: navStyles.navBarBlue,
+                titleStyle: navStyles.navBarBlue
+            };
         }
     };
 

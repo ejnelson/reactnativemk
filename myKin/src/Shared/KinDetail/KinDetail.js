@@ -3,10 +3,12 @@ import { View, Text, Image } from 'react-native';
 import moment from 'moment';
 import appStyles from '../../styles';
 import styles from './styles';
+import navStyles from '../../Shared/NavBar/style';
 
 export default class KinDetail extends Component {
     static navigationOptions = {
-        title: 'My Kin'
+        title: 'My Kin',
+        header: { style: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
     };
 
     render() {

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { ListView } from 'react-native';
 import ListRow from '../../Shared/ListRow/ListRow';
 import styles from '../styles';
+import navStyles from '../../Shared/NavBar/style';
 
 export default class ListDetails extends Component {
     static navigationOptions = {
-        title: ({ state }) => `${state.params.for.firstName}'s List`
+        title: ({ state }) => `${state.params.for.firstName}'s List`,
+        header: { style: navStyles.navBarBlue, titleStyle: navStyles.navBarBlue }
     };
 
     constructor(props, context) {
