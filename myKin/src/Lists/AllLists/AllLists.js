@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, ListView, Text, TouchableHighlight } from 'react-native';
 import ListFilterHeader from '../../Shared/ListFilterHeader';
-import ListRow from '../../Shared/ListRow';
+import ListRow from '../../Shared/ListRow/ListRow';
 import AddButton from '../../Shared/NavBar/AddButton';
 import styles from './styles';
 

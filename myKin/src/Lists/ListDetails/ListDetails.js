@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import ListRow from '../../Shared/ListRow';
+import ListRow from '../../Shared/ListRow/ListRow';
 import styles from '../styles';
 
 export default class ListDetails extends Component {

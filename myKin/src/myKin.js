@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TabNavigator } from 'react-navigation';
-import Kin from './Kin';
-import Lists from './Lists';
+import Kin from './Kin/Kin';
+import Lists from './Lists/Lists';
 import UserService from './Services/UserService';
 import KinService from './Services/KinService';
 import ListService from './Services/ListService';

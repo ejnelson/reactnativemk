@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { StackNavigator } from 'react-navigation';
-import NavBar from '../Shared/NavBar';
-import AllLists from './AllLists';
-import ListDetails from './ListDetails';
-import CreateList from './CreateList';
-import KinList from '../Kin/KinList';
+import AllLists from './AllLists/AllLists';
+import ListDetails from './ListDetails/ListDetails';
+import CreateList from './CreateList/CreateList';
+import KinList from '../Kin/KinList/KinList';
 
 export default class Lists extends Component {
     constructor(props, context) {

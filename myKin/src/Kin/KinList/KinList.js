@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { ListView, View } from 'react-native';
-import ListRow from '../../Shared/ListRow';
+import ListRow from '../../Shared/ListRow/ListRow';
 import ListSectionHeader from '../../Shared/ListSectionHeader';
 import ListFilterHeader from '../../Shared/ListFilterHeader';
 import AddButton from '../../Shared/NavBar/AddButton';
@@ -100,29 +100,11 @@ export default class KinList extends Component {
         }
     }
 
-    componentWillMount(a, b) {
-        this.setState(
-            {
-                dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.kin)
-            },
-            () => this.forceUpdate()
-        );
-    }
-
-    componentDidMount(a, b) {}
-
-    shouldComponentUpdate(a, b) {
-        return true;
-    }
-    componentWillUpdate(a, b) {}
-    componentDidUpdate(a, b) {}
-
     renderSectionHeader(sectionData, category) {
         return <ListSectionHeader>{category}</ListSectionHeader>;
     }
 
     renderRow(rowData) {
-        console.log('Rendering', rowData);
         return (
             <ListRow
                 heading={rowData.name}
