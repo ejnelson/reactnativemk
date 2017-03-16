@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet, Alert } from 'react-native';
-import TextInput from '../../Shared/TextInput';
-import navStyles from '../../Shared/NavBar/style';
+import TextInput from '../Shared/TextInput';
+import navStyles from '../Shared/NavBar/style';
 
 const styles = StyleSheet.create({
     container: {

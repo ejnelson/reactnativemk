@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import ListRow from '../../Shared/ListRow/ListRow';
-import styles from '../styles';
-import navStyles from '../../Shared/NavBar/style';
+import ListRow from '../Shared/ListRow/ListRow';
+import navStyles from '../Shared/NavBar/style';
 
 export default class ListDetails extends Component {
     static navigationOptions = {
