@@ -1,3 +1,6 @@
+.vscode
+.eslintrc
+
 # OSX
 #
 .DS_Store
