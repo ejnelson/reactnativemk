@@ -4,8 +4,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: 70
+        justifyContent: 'flex-start'
     },
     header: {
         flexDirection: 'row',

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Navigator } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import KinList from './KinList';
 import CreateKin from './CreateKin';
 import KinDetail from '../Shared/KinDetail';
@@ -12,8 +13,6 @@ import NavBar from '../Shared/NavBar';
  */
 export default class Kin extends Component {
     constructor(props, context) {
-        console.log(props);
-
         super(props, context);
 
         this.state = {
@@ -49,15 +48,20 @@ export default class Kin extends Component {
     }
 
     render() {
+        const StackNav = StackNavigator({
+            List: {
+                screen: KinList
+            },
+            Detail: { screen: KinDetail },
+            Create: { screen: CreateKin }
+        });
+
         return (
-            <Navigator
-                configureScene={() => Navigator.SceneConfigs.HorizontalSwipeJump}
-                initialRoute={{ name: 'kin', title: 'My Kin', index: 0 }}
-                ref={nav => {
-                    this.nav = nav;
+            <StackNav
+                screenProps={{
+                    kin: this.state.kin,
+                    onDetailPressed: this.onDetailPressed.bind(this)
                 }}
-                renderScene={this.renderScene.bind(this)}
-                navigationBar={<NavBar createRoute={{ name: 'create', title: 'Create New Kin' }} />}
             />
         );
     }

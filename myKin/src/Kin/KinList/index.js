@@ -3,12 +3,21 @@ import { ListView, View } from 'react-native';
 import ListRow from '../../Shared/ListRow';
 import ListSectionHeader from '../../Shared/ListSectionHeader';
 import ListFilterHeader from '../../Shared/ListFilterHeader';
+import AddButton from '../../Shared/NavBar/AddButton';
 import FAMILY_CATEGORIES from './FamilyCategories';
 import styles from './styles';
 
 const UNFILTER_NAME = 'All Kin';
 
 export default class KinList extends Component {
+    static navigationOptions = {
+        title: 'My Kin',
+        header: ({ navigate }) => ({
+            left: <AddButton onPress={() => navigate('Create')} />,
+            backTitle: null
+        })
+    };
+
     constructor(props, context) {
         super(props, context);
 
@@ -18,7 +27,7 @@ export default class KinList extends Component {
         });
 
         // Turns the kin array into an object map keyed by relationship categories
-        const categorizedKin = props.kin.reduce(
+        const categorizedKin = props.screenProps.kin.reduce(
             (acc, kin) => {
                 const category = FAMILY_CATEGORIES[kin.relation];
                 if (acc[category]) {
@@ -42,7 +51,7 @@ export default class KinList extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const categorizedKin = newProps.kin.reduce(
+        const categorizedKin = newProps.screenProps.kin.reduce(
             (acc, kin) => {
                 const category = FAMILY_CATEGORIES[kin.relation];
                 if (acc[category]) {
@@ -76,6 +85,13 @@ export default class KinList extends Component {
         }
     }
 
+    onDetailPressed(kin) {
+        console.log('pressed');
+        const { navigate } = this.props.navigation;
+
+        navigate('Detail', kin);
+    }
+
     renderSectionHeader(sectionData, category) {
         return <ListSectionHeader>{category}</ListSectionHeader>;
     }
@@ -87,7 +103,7 @@ export default class KinList extends Component {
                 subHeading={`(${rowData.relation})`}
                 details={rowData.birthDay.format('MMMM DD')}
                 date={rowData.date}
-                onPress={() => this.props.onDetailPressed(rowData)}
+                onPress={() => this.onDetailPressed(rowData)}
                 imageUrl={rowData.imageUrl}
             />
         );
@@ -114,6 +130,11 @@ export default class KinList extends Component {
 }
 
 KinList.propTypes = {
-    kin: PropTypes.arrayOf(Object).isRequired,
-    onDetailPressed: PropTypes.func.isRequired
+    screenProps: PropTypes.shape({
+        kin: PropTypes.arrayOf(Object).isRequired,
+        onDetailPressed: PropTypes.func.isRequired
+    }).isRequired,
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired
+    }).isRequired
 };

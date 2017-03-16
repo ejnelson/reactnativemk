@@ -5,7 +5,6 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        paddingTop: 50
     },
     input: {
         borderWidth: 1,
