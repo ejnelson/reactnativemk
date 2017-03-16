@@ -2,9 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { View, ListView, Text, TouchableHighlight } from 'react-native';
 import ListFilterHeader from '../../Shared/ListFilterHeader';
 import ListRow from '../../Shared/ListRow';
+import AddButton from '../../Shared/NavBar/AddButton';
 import styles from './styles';
 
 export default class AllLists extends Component {
+    static navigationOptions = {
+        title: 'Lists',
+        header: ({ navigate }) => ({
+            left: <AddButton onPress={() => navigate('Create')} />,
+            backTitle: null
+        })
+    };
+
     constructor(props, context) {
         super(props, context);
 
@@ -13,7 +22,7 @@ export default class AllLists extends Component {
         });
 
         this.state = {
-            dataSource: ds.cloneWithRows(props.lists['Shopping List']),
+            dataSource: ds.cloneWithRows(props.screenProps.lists['Shopping List']),
             filterItems: [{ text: 'Shopping List', selected: true }, { text: 'Kin Lists' }]
         };
     }
@@ -21,7 +30,9 @@ export default class AllLists extends Component {
     componentWillReceiveProps() {
         const currentCategory = this.state.filterItems.filter(x => x.selected)[0].text;
         this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(this.props.lists[currentCategory])
+            dataSource: this.state.dataSource.cloneWithRows(
+                this.props.screenProps.lists[currentCategory]
+            )
         });
     }
 
@@ -31,26 +42,26 @@ export default class AllLists extends Component {
             selected: x.text === item
         }));
         this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(this.props.lists[item]),
+            dataSource: this.state.dataSource.cloneWithRows(this.props.screenProps.lists[item]),
             filterItems: newFilterItems
         });
     }
 
-    renderRow(rowData) {
-        if (rowData.items) {
+    renderRow(list) {
+        if (list.items) {
             return (
                 <ListRow
-                    heading={`${rowData.for.firstName}'s ${rowData.name}`}
+                    heading={`${list.for.firstName}'s ${list.name}`}
                     subHeading={''}
-                    details={`${rowData.items.length} Items`}
-                    onPress={() => this.props.onDetailPressed(rowData)}
+                    details={`${list.items.length} Items`}
+                    onPress={() => this.props.navigation.navigate('Detail', list)}
                 />
             );
         }
 
         return (
             <ListRow
-                heading={rowData.name}
+                heading={list.name}
                 subHeading={''}
                 details={''}
                 rightButton={
@@ -90,7 +101,6 @@ export default class AllLists extends Component {
                     automaticallyAdjustContentInsets={false}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}
-                    onDetailPressed={this.props.onDetailPressed}
                     enableEmptySections
                 />
             </View>
@@ -99,17 +109,21 @@ export default class AllLists extends Component {
 }
 
 AllLists.propTypes = {
-    lists: PropTypes.shape({
-        'Shopping List': PropTypes.array,
-        'Kin Lists': PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number,
-                owner: PropTypes.object,
-                for: PropTypes.object,
-                name: PropTypes.string.isRequired,
-                items: PropTypes.array
-            })
-        )
+    screenProps: PropTypes.shape({
+        lists: PropTypes.shape({
+            'Shopping List': PropTypes.array,
+            'Kin Lists': PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.number,
+                    owner: PropTypes.object,
+                    for: PropTypes.object,
+                    name: PropTypes.string.isRequired,
+                    items: PropTypes.array
+                })
+            )
+        }).isRequired
     }).isRequired,
-    onDetailPressed: PropTypes.func.isRequired
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired
+    }).isRequired
 };

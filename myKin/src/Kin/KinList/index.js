@@ -12,10 +12,15 @@ const UNFILTER_NAME = 'All Kin';
 export default class KinList extends Component {
     static navigationOptions = {
         title: 'My Kin',
-        header: ({ navigate }) => ({
-            left: <AddButton onPress={() => navigate('Create')} />,
-            backTitle: null
-        })
+        header: ({ navigate, state }) => {
+            if (state.routeName === 'List') {
+                return {
+                    left: <AddButton onPress={() => navigate('Create')} />,
+                    backTitle: null
+                };
+            }
+            return { backTitle: null };
+        }
     };
 
     constructor(props, context) {
@@ -86,17 +91,38 @@ export default class KinList extends Component {
     }
 
     onDetailPressed(kin) {
-        console.log('pressed');
-        const { navigate } = this.props.navigation;
-
-        navigate('Detail', kin);
+        const { state, goBack, navigate } = this.props.navigation;
+        if (state.params) {
+            state.params.onChooseKin(kin);
+            goBack();
+        } else {
+            navigate('Detail', kin);
+        }
     }
+
+    componentWillMount(a, b) {
+        this.setState(
+            {
+                dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.kin)
+            },
+            () => this.forceUpdate()
+        );
+    }
+
+    componentDidMount(a, b) {}
+
+    shouldComponentUpdate(a, b) {
+        return true;
+    }
+    componentWillUpdate(a, b) {}
+    componentDidUpdate(a, b) {}
 
     renderSectionHeader(sectionData, category) {
         return <ListSectionHeader>{category}</ListSectionHeader>;
     }
 
     renderRow(rowData) {
+        console.log('Rendering', rowData);
         return (
             <ListRow
                 heading={rowData.name}
@@ -117,6 +143,7 @@ export default class KinList extends Component {
                     onPress={this.onFilterPressed.bind(this)}
                 />
                 <ListView
+                    removeClippedSubviews={false}
                     contentInset={{ bottom: 49 }}
                     automaticallyAdjustContentInsets={false}
                     dataSource={this.state.dataSource}
@@ -131,10 +158,11 @@ export default class KinList extends Component {
 
 KinList.propTypes = {
     screenProps: PropTypes.shape({
-        kin: PropTypes.arrayOf(Object).isRequired,
-        onDetailPressed: PropTypes.func.isRequired
+        kin: PropTypes.arrayOf(Object).isRequired
     }).isRequired,
     navigation: PropTypes.shape({
-        navigate: PropTypes.func.isRequired
+        navigate: PropTypes.func.isRequired,
+        state: PropTypes.object.isRequired,
+        goBack: PropTypes.func.isRequired
     }).isRequired
 };

@@ -4,6 +4,10 @@ import ListRow from '../../Shared/ListRow';
 import styles from '../styles';
 
 export default class ListDetails extends Component {
+    static navigationOptions = {
+        title: ({ state }) => `${state.params.for.firstName}'s List`
+    };
+
     constructor(props, context) {
         super(props, context);
 
@@ -11,14 +15,16 @@ export default class ListDetails extends Component {
             rowHasChanged: (r1, r2) => r1 !== r2
         });
 
+        const { items } = props.navigation.state.params;
         this.state = {
-            dataSource: ds.cloneWithRows(props.items)
+            dataSource: ds.cloneWithRows(items)
         };
     }
 
-    componentWillReceiveProps() {
+    componentWillReceiveProps(newProps) {
+        const { items } = newProps.navigation.state.params;
         this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(this.props.items)
+            dataSource: this.state.dataSource.cloneWithRows(items)
         });
     }
 
@@ -29,7 +35,8 @@ export default class ListDetails extends Component {
     render() {
         return (
             <ListView
-                style={styles.container}
+                removeClippedSubviews={false}
+                style={[styles.container]}
                 contentInset={{ bottom: 49 }}
                 automaticallyAdjustContentInsets={false}
                 dataSource={this.state.dataSource}
@@ -40,5 +47,11 @@ export default class ListDetails extends Component {
 }
 
 ListDetails.propTypes = {
-    items: React.PropTypes.array.isRequired
+    navigation: React.PropTypes.shape({
+        state: React.PropTypes.shape({
+            params: React.PropTypes.shape({
+                items: React.PropTypes.array.isRequired
+            }).isRequired
+        }).isRequired
+    }).isRequired
 };
