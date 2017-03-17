@@ -45,13 +45,30 @@ export default class ListFilterHeader extends Component {
                 </View>
             );
         });
-        return <View style={[styles.container, navStyles.navDefaultBg]}>{buttons}</View>;
+        return (
+            <View
+                style={[
+                    styles.container,
+                    navStyles.navDefaultBg,
+                    this.props.backgroundColor
+                        ? { backgroundColor: this.props.backgroundColor }
+                        : {}
+                ]}
+            >
+                {buttons}
+            </View>
+        );
     }
 }
+
+ListFilterHeader.defaultProps = {
+    backgroundColor: null
+};
 
 ListFilterHeader.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({ text: PropTypes.string.isRequired, selected: PropTypes.bool })
     ).isRequired,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    backgroundColor: PropTypes.string
 };
