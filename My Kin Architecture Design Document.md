@@ -110,9 +110,13 @@ interface ListItem {
 interface Event {
     id?: Number
     host: User
+    for: User
     location: String
+    name: String
+    details: String
     startTime: Date
     endTime: Date
+    list: List
     guests: [Kin]
     comments: [Comment]
 }
@@ -124,6 +128,7 @@ interface Comment {
     id?: Number
     author: User
     body: String
+    created: Date
 }
 ```
 #### 2.1.2 Authentication Service
@@ -370,6 +375,8 @@ PaaS offering a managed K/V Database, traditional and OAuth authentication, and 
         "id": {
             "id": "string",
             "hostId": "string",
+            "forId": "string",
+            "listId": "string",
             "name": "string",
             "guestIds": [
                 "string"
@@ -382,7 +389,8 @@ PaaS offering a managed K/V Database, traditional and OAuth authentication, and 
                 "id": {
                     "id": "string",
                     "userId": "string",
-                    "body": "string"
+                    "body": "string",
+                    "created": "string"
                 }
             }
         }
