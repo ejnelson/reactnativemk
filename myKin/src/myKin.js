@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TabNavigator } from 'react-navigation';
 import Kin from './Kin/Kin';
 import Lists from './Lists/Lists';
+import Events from './Events/Events';
 import UserService from './Services/UserService';
 import KinService from './Services/KinService';
 import ListService from './Services/ListService';
@@ -25,9 +26,12 @@ export default class Main extends Component {
                 },
                 Lists: {
                     screen: Lists
+                },
+                Events: {
+                    screen: Events
                 }
             },
-            { initialRouteName: 'Lists' }
+            { initialRouteName: 'Events' }
         );
 
         return (
