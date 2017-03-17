@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import appStyles from '../styles';
+import { defaultBackgroundColor, primaryColor } from '../style/colors';
 
 function ListSectionHeader(props) {
     return (
-        <View style={[appStyles.primaryBg, { padding: 5 }]}>
-            <Text style={{ color: 'white', fontWeight: '500' }}>{props.children}</Text>
+        <View style={{ backgroundColor: primaryColor, padding: 5 }}>
+            <Text style={{ color: defaultBackgroundColor, fontWeight: '500' }}>
+                {props.children}
+            </Text>
         </View>
     );
 }

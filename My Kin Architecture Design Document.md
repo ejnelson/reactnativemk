@@ -327,74 +327,95 @@ PaaS offering a managed K/V Database, traditional and OAuth authentication, and 
 {
     "Users": {
         "id": {
-            "id": "string",
             "settings": {
                 "key": "string"
-            }
+            },
+            "lastLoginTime": "string"
         }
     },
     "Kin": {
         "id": {
-            "userId": "strgin",
+            "userId": {
+                "username": "string"
+            },
             "fullName": "string",
-            // OR
             "firstName": "string",
             "lastName": "string",
             "birthDate": "string",
             "portraitUrl": "string",
+            "email": "string",
             "details": {
                 "type": "string" // values keyed by type, i.e. "Food": "Pizza"
             },
-            "relationships": {
-                "kinId": "string"
-            },
-            "shoppingListItems": [
-                "id"
-            ]
+            
+        }
+    },
+    "Relationships": {
+        "kinId": {
+            "kinId": "string"
+        }
+    },
+    "EventInvitations": {
+        "kinId": {
+            "eventId": {
+                "rsvp": "enum"
+            }
         }
     },
     "Lists": {
-        "id": {
-            "name": "string",
-            "ownerId": "string", // Who owns this list to make changes to it
-            "forId": "string", // Who is this list for (could control visibility?)
-            "items": {
-                "id": {
-                    "claimedBy": "string"
-                }
+        "receiverId": {
+            "listId": {
+                "creatorId": "string",
+                "hiddenFrom": {
+                    "$key": "userId"
+                },
+                "isShoppingList": "bool",
+                "name": "string"
             }
         }
     },
     "ListItems": {
-        "id": {
-            "name": "string",
-            "purchaseUrl": "string",
+        "listId": {
+            "itemId": {
+                "name": "string",
+                "purchaseUrl": "string",
+                "claimedById": "string"
+            }
         }
     },
     "Events": {
         "id": {
-            "id": "string",
-            "hostId": "string",
-            "forId": "string",
+            "hostId": "kinKey",
+            "hiddenFrom": {
+                "$key": "kinKey"
+            },
+            "for": {
+                "name": "string",
+                "kinId": "kinKey",
+                "imageUrl": "string"
+            },
             "listId": "string",
-            "name": "string",
-            "guestIds": [
-                "string"
-            ],
+            "eventName": "string",
+            "guestInvitations": {
+                "$guestKey": {
+                    "rsvp": "enum"
+                }
+            },
             "startTime": "string",
             "endTime": "string",
             "location": "string",
             "details": "string",
+            "lastUpdatedTime": "string",
             "comments": {
-                "id": {
-                    "id": "string",
-                    "userId": "string",
+                "commentId": {
+                    "authorId": "string",
                     "body": "string",
                     "created": "string"
                 }
-            }
+            },
         }
     },
+    
     "Notifications": {
         "id": {
             "title": "string",

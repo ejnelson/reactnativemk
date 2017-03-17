@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { primaryColorDark, defaultBackgroundColor } from '../../style/colors';
 
 export default StyleSheet.create({
     container: {
@@ -7,15 +8,15 @@ export default StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: 'blue',
+        backgroundColor: primaryColorDark,
         marginRight: 15
     },
     heading: {
-        color: 'white',
+        color: defaultBackgroundColor,
         fontSize: 12
     },
     detail: {
-        color: 'white',
+        color: defaultBackgroundColor,
         fontSize: 18
     }
 });

@@ -2,13 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import globalStyles from '../styles';
 import navStyles from '../Shared/NavBar/style';
+import { secondaryColor, defaultBackgroundColor } from '../style/colors';
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        backgroundColor: 'white',
+        backgroundColor: defaultBackgroundColor,
         padding: 10
     },
     button: {
@@ -16,10 +17,10 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     selected: {
-        backgroundColor: '#ffa115'
+        backgroundColor: secondaryColor
     },
     selectedText: {
-        color: 'white',
+        color: defaultBackgroundColor,
         fontWeight: '400'
     }
 });

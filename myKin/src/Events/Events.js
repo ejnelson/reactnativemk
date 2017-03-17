@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { StackNavigator } from 'react-navigation';
 import AllEvents from './AllEvents';
 import EventDetails from './EventDetails';
+import CreateEvent from './CreateEvent';
 
 export default class Lists extends Component {
     constructor(props, context) {
@@ -47,8 +48,8 @@ export default class Lists extends Component {
     render() {
         const StackNav = StackNavigator({
             List: { screen: AllEvents },
-            Detail: { screen: EventDetails }
-            // Create: { screen: CreateList },
+            Detail: { screen: EventDetails },
+            Create: { screen: CreateEvent }
             // ChooseKin: { screen: KinList },
             // CreateListItem: { screen: CreateListItem }
         });

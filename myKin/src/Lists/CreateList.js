@@ -3,12 +3,13 @@ import { View, Text, TouchableHighlight, StyleSheet, Alert } from 'react-native'
 import TextInput from '../Shared/TextInput';
 import navStyles from '../Shared/NavBar/style';
 import NavButton from '../Shared/NavBar/NavButton';
+import { defaultBackgroundColor, textColor } from '../style/colors';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        backgroundColor: '#fff'
+        backgroundColor: defaultBackgroundColor
     },
     row: {
         flexDirection: 'row',
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
         lineHeight: 24
     },
     placeholderColor: { color: '#D0CCCC' },
-    valueColor: { color: '#585654' }
+    valueColor: { color: textColor }
 });
 
 export default class CreateList extends Component {

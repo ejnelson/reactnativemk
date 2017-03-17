@@ -1,0 +1,9 @@
+export const borderColor = '#E9EDF5';
+export const textColor = '#585654';
+export const lightTextColor = '#767374';
+export const tertiaryColor = '#13C69A';
+export const defaultBackgroundColor = '#FFF';
+export const secondaryColor = '#FFA115';
+export const disabledColor = '#95A1AA';
+export const primaryColor = '#18c5ed';
+export const primaryColorDark = '#4B6BC6';

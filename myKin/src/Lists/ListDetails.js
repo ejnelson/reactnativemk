@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { ListView, View, Text, TouchableHighlight } from 'react-native';
 import ListRow from '../Shared/ListRow/ListRow';
 import navStyles from '../Shared/NavBar/style';
+import { defaultBackgroundColor } from '../style/colors';
 
 export default class ListDetails extends Component {
     static navigationOptions = {
@@ -51,7 +52,7 @@ export default class ListDetails extends Component {
                     ]}
                 >
                     <TouchableHighlight onPress={() => this.handleUnclaimItem(item)}>
-                        <Text style={{ color: '#fff', fontSize: 12 }}>Added</Text>
+                        <Text style={{ color: defaultBackgroundColor, fontSize: 12 }}>Added</Text>
                     </TouchableHighlight>
                 </View>
             );

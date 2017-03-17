@@ -4,6 +4,13 @@ import TextInput from '../Shared/TextInput';
 import ListRow from '../Shared/ListRow/ListRow';
 import ListFilterHeader from '../Shared/ListFilterHeader';
 import styles from './styles';
+import {
+    borderColor,
+    textColor,
+    lightTextColor,
+    tertiaryColor,
+    defaultBackgroundColor
+} from '../style/colors';
 
 export default class EventDetails extends Component {
     static navigationOptions = {
@@ -34,17 +41,14 @@ export default class EventDetails extends Component {
                     paddingTop: 15,
                     paddingBottom: 15,
                     borderBottomWidth: 1,
-                    borderColor: '#E9EDF5'
+                    borderColor
                 }}
             >
-                <Image
-                    source={{ uri: comment.author.imageUrl }}
-                    style={{ height: 20, width: 20, borderRadius: 6, marginRight: 8 }}
-                />
+                <Image source={{ uri: comment.author.imageUrl }} style={styles.smallPortrait} />
                 <View>
                     <Text
                         style={{
-                            color: '#585654',
+                            color: textColor,
                             fontSize: 14,
                             lineHeight: 17,
                             fontWeight: 'bold',
@@ -54,11 +58,11 @@ export default class EventDetails extends Component {
                         {comment.author.name}
                     </Text>
                     <Text
-                        style={{ color: '#585654', fontSize: 14, lineHeight: 20, marginBottom: 9 }}
+                        style={{ color: textColor, fontSize: 14, lineHeight: 20, marginBottom: 9 }}
                     >
                         {comment.body}
                     </Text>
-                    <Text style={{ color: '#767374', fontSize: 12, lineHeight: 15 }}>
+                    <Text style={{ color: lightTextColor, fontSize: 12, lineHeight: 15 }}>
                         {comment.created.fromNow()}
                     </Text>
                 </View>
@@ -88,7 +92,7 @@ export default class EventDetails extends Component {
                                 flex: 1,
                                 flexDirection: 'row',
                                 alignItems: 'flex-start',
-                                borderColor: '#E9EDF5',
+                                borderColor,
                                 borderBottomWidth: 1,
                                 padding: 5
                             }}
@@ -97,13 +101,13 @@ export default class EventDetails extends Component {
                                 <Image
                                     key={guest.id}
                                     source={{ uri: guest.imageUrl }}
-                                    style={{ height: 40, width: 40, borderRadius: 6, margin: 5 }}
+                                    style={[styles.mediumPortrait, { margin: 5 }]}
                                 />
                             ))}
                         </View>
                         <Text
                             style={{
-                                color: '#13C69A',
+                                color: tertiaryColor,
                                 fontSize: 16,
                                 fontWeight: 'bold',
                                 lineHeight: 19,
@@ -113,22 +117,17 @@ export default class EventDetails extends Component {
                         >
                             Event Details
                         </Text>
-                        <Text style={{ fontSize: 14, lineHeight: 24, color: '#585654' }}>
+                        <Text style={{ fontSize: 14, lineHeight: 24, color: textColor }}>
                             {params.details}
                         </Text>
                         <View style={{ flex: 1, alignItems: 'center', marginTop: 24 }}>
                             <Image
-                                style={{
-                                    height: 40,
-                                    width: 40,
-                                    borderRadius: 6,
-                                    margin: 5
-                                }}
+                                style={[styles.mediumPortrait, { margin: 5 }]}
                                 source={{ uri: params.host.imageUrl }}
                             />
                             <Text
                                 style={{
-                                    color: '#585654',
+                                    color: textColor,
                                     lineHeight: 28,
                                     fontSize: 14,
                                     fontWeight: 'bold'
@@ -153,7 +152,7 @@ export default class EventDetails extends Component {
                         </View>
                         <View style={{ flex: 1 }}>
                             <ListFilterHeader
-                                backgroundColor="#fff"
+                                backgroundColor={defaultBackgroundColor}
                                 items={this.state.filterItems}
                                 onPress={() => {}}
                             />
@@ -161,12 +160,12 @@ export default class EventDetails extends Component {
                                 style={{
                                     flexDirection: 'row',
                                     borderBottomWidth: 1,
-                                    borderColor: '#E9EDF5',
+                                    borderColor,
                                     alignItems: 'center'
                                 }}
                             >
                                 <Image
-                                    style={{ height: 40, width: 40, borderRadius: 6 }}
+                                    style={styles.mediumPortrait}
                                     source={{ uri: params.host.imageUrl }}
                                 />
                                 <View style={{ flex: 1 }}>

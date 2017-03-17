@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight, StyleSheet, Alert } from 'react-native';
 import TextInput from '../Shared/TextInput';
 import navStyles from '../Shared/NavBar/style';
+import { defaultBackgroundColor, secondaryColor } from '../style/colors';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        backgroundColor: '#fff'
+        backgroundColor: defaultBackgroundColor
     },
     button: {
-        borderColor: '#FFA115',
+        borderColor: secondaryColor,
         borderWidth: 1,
         borderRadius: 8,
         marginLeft: 10,
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     orangeBg: {
-        backgroundColor: '#FFA115'
+        backgroundColor: secondaryColor
     },
     text: {
         textAlign: 'center',
@@ -26,8 +27,8 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         padding: 10
     },
-    orangeText: { color: '#FFA115' },
-    whiteText: { color: '#fff' },
+    orangeText: { color: secondaryColor },
+    whiteText: { color: defaultBackgroundColor },
     buttonStack: { flex: 1, justifyContent: 'flex-end', alignItems: 'stretch' }
 });
 

@@ -1,14 +1,15 @@
 import { StyleSheet } from 'react-native';
 import globalStyles from '../styles';
 import navStyles from '../Shared/NavBar/style';
+import { defaultBackgroundColor, secondaryColor } from '../style/colors';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: defaultBackgroundColor
     },
     button: {
-        borderColor: '#FFA115',
+        borderColor: secondaryColor,
         borderWidth: 1,
         borderRadius: 8,
         marginLeft: 10,
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     orangeBg: {
-        backgroundColor: '#FFA115'
+        backgroundColor: secondaryColor
     },
     text: {
         textAlign: 'center',
@@ -24,9 +25,11 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         padding: 10
     },
-    orangeText: { color: '#FFA115' },
-    whiteText: { color: '#fff' },
-    buttonStack: { flex: 1, justifyContent: 'flex-end', alignItems: 'stretch' }
+    orangeText: { color: secondaryColor },
+    whiteText: { color: defaultBackgroundColor },
+    buttonStack: { flex: 1, justifyContent: 'flex-end', alignItems: 'stretch' },
+    smallPortrait: { height: 20, width: 20, borderRadius: 6, marginRight: 8 },
+    mediumPortrait: { height: 40, width: 40, borderRadius: 6 }
 });
 
 export default {
