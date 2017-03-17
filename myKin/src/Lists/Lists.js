@@ -21,6 +21,7 @@ export default class Lists extends Component {
     }
 
     componentDidMount() {
+        console.log('Mounting lists');
         this.props.screenProps.listService.register(lists => {
             this.setState({ lists }, () => {
                 this.forceUpdate();
@@ -50,8 +51,11 @@ export default class Lists extends Component {
     }
 
     claimItem(itemToClaim) {
-        console.log('Claiming', itemToClaim);
         this.props.screenProps.listService.claimItem(itemToClaim.id).then(() => {});
+    }
+
+    unclaimItem(itemToRelease) {
+        this.props.screenProps.listService.unclaimItem(itemToRelease.id).then(() => {});
     }
 
     render() {
@@ -71,7 +75,8 @@ export default class Lists extends Component {
                     lists: this.state.lists,
                     kin: this.state.kin,
                     saveNewList: this.saveNewList.bind(this),
-                    onClaimItem: this.claimItem.bind(this)
+                    onClaimItem: this.claimItem.bind(this),
+                    handleUnclaimItem: this.unclaimItem.bind(this)
                 }}
             />
         );
@@ -83,7 +88,8 @@ Lists.propTypes = {
         listService: PropTypes.shape({
             register: PropTypes.func.isRequired,
             createList: PropTypes.func.isRequired,
-            claimItem: PropTypes.func.isRequired
+            claimItem: PropTypes.func.isRequired,
+            unclaimItem: PropTypes.func.isRequired
         }).isRequired,
         kinService: PropTypes.shape({
             register: PropTypes.func.isRequired

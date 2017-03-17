@@ -3,11 +3,7 @@ export default class ListService {
         this.registeredCallbacks = [];
         this.lists = {
             'Shopping List': [
-                {
-                    id: 1,
-                    name: 'Skateboard',
-                    purchaseUrl: 'www.amazon.com'
-                }
+                
             ],
             'Kin Lists': [
                 {
@@ -18,8 +14,7 @@ export default class ListService {
                         {
                             id: 1,
                             name: 'Skateboard',
-                            purchaseUrl: 'www.amazon.com',
-                            claimedBy: true
+                            purchaseUrl: 'www.amazon.com'
                         },
                         {
                             id: 2,
@@ -68,8 +63,14 @@ export default class ListService {
         });
     }
 
-    unClaimItem(itemId) {
-        return new Promise((resolve, reject) => reject('unimplemented'));
+    unclaimItem(itemId) {
+        return new Promise((resolve, reject) => {
+            const item = this.lists['Shopping List'].find(i => i.id === itemId);
+            this.lists['Shopping List'].splice(this.lists['Shopping List'].indexOf(item), 1);
+            item.claimedBy = null;
+            this.registeredCallbacks.forEach(callback => callback(this.lists));
+            resolve();
+        });
     }
 
     removeList(id) {

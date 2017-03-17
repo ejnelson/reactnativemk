@@ -29,6 +29,14 @@ export default class ListDetails extends Component {
         });
     }
 
+    handleClaimItem(item) {
+        this.props.screenProps.onClaimItem(item);
+    }
+
+    handleUnclaimItem(item) {
+        this.props.screenProps.handleUnclaimItem(item);
+    }
+
     renderRightButton(item) {
         if (item.claimedBy) {
             return (
@@ -42,7 +50,7 @@ export default class ListDetails extends Component {
                         navStyles.navPrimaryBg
                     ]}
                 >
-                    <TouchableHighlight>
+                    <TouchableHighlight onPress={() => this.handleUnclaimItem(item)}>
                         <Text style={{ color: '#fff', fontSize: 12 }}>Added</Text>
                     </TouchableHighlight>
                 </View>
@@ -57,7 +65,7 @@ export default class ListDetails extends Component {
                     borderColor: '#D0CCCC'
                 }}
             >
-                <TouchableHighlight onPress={() => this.props.screenProps.onClaimItem(item)}>
+                <TouchableHighlight onPress={() => this.handleClaimItem(item)}>
                     <Text style={{ fontSize: 12, color: '#D0CCCC', padding: 8 }}>
                         Shopping List
                     </Text>
@@ -100,6 +108,7 @@ ListDetails.propTypes = {
         }).isRequired
     }).isRequired,
     screenProps: PropTypes.shape({
-        onClaimItem: PropTypes.func.isRequired
+        onClaimItem: PropTypes.func.isRequired,
+        handleUnclaimItem: PropTypes.func.isRequired
     }).isRequired
 };
