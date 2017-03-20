@@ -326,39 +326,29 @@ PaaS offering a managed K/V Database, traditional and OAuth authentication, and 
 ```json
 {
     "Users": {
-        "id": {
+        "$fbkey": {
             "settings": {
                 "key": "string"
             },
-            "lastLoginTime": "string"
-        }
-    },
-    "Kin": {
-        "id": {
-            "userId": {
-                "username": "string"
+            "lastLoginTime": "string",
+            "information": {
+                "fullName": "string",
+                "firstName": "string",
+                "lastName": "string",
+                "birthDate": "string",
+                "portraitUrl": "string",
+                "email": "string",
+                "details": {
+                    "type": "string"
+                },
+                "kin": {
+                    "$fbkey": "string"
+                }
             },
-            "fullName": "string",
-            "firstName": "string",
-            "lastName": "string",
-            "birthDate": "string",
-            "portraitUrl": "string",
-            "email": "string",
-            "details": {
-                "type": "string" // values keyed by type, i.e. "Food": "Pizza"
-            },
-            
-        }
-    },
-    "Relationships": {
-        "kinId": {
-            "kinId": "string"
-        }
-    },
-    "EventInvitations": {
-        "kinId": {
-            "eventId": {
-                "rsvp": "enum"
+            "events": {
+                "eventId": {
+                    "rsvp": "enum"
+                }
             }
         }
     },
@@ -420,7 +410,11 @@ PaaS offering a managed K/V Database, traditional and OAuth authentication, and 
         "id": {
             "title": "string",
             "details": "string",
-            "sent": "string"
+            "sent": "string",
+            "linkedThing": {
+                "key": "string",
+                "type": "enum"
+            }
         }
     }
 }
