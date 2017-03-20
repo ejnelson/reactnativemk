@@ -34,15 +34,6 @@ export default class Lists extends Component {
         });
     }
 
-    onChooseKinPressed() {
-        this.nav.push({ name: 'chooseKin', title: 'Choose a Kin' });
-    }
-
-    onKinDetailPressed(rowData) {
-        this.nav.pop();
-        this.setState({ createForKin: rowData });
-    }
-
     saveNewList(newList) {
         this.props.screenProps.listService
             .createList(newList)
