@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { ListView, View } from 'react-native';
-import ListRow from '../../Shared/ListRow/ListRow';
-import ListSectionHeader from '../../Shared/ListSectionHeader';
-import ListFilterHeader from '../../Shared/ListFilterHeader';
-import AddButton from '../../Shared/NavBar/AddButton';
+import ListRow from '../Shared/ListRow/ListRow';
+import ListSectionHeader from '../Shared/ListSectionHeader';
+import ListFilterHeader from '../Shared/ListFilterHeader';
+import AddButton from '../Shared/NavBar/AddButton';
 import FAMILY_CATEGORIES from './FamilyCategories';
 import styles from './styles';
-import navStyles from '../../Shared/NavBar/style';
 
 const UNFILTER_NAME = 'All Kin';
 
@@ -18,14 +17,14 @@ export default class KinList extends Component {
                 return {
                     left: <AddButton onPress={() => navigate('Create')} />,
                     backTitle: null,
-                    style: navStyles.navDefaultBg,
-                    titleStyle: navStyles.navDefaultText
+                    style: styles.navDefaultBg,
+                    titleStyle: styles.navDefaultText
                 };
             }
             return {
                 backTitle: null,
-                style: navStyles.navPrimaryBg,
-                titleStyle: navStyles.navPrimaryText
+                style: styles.navPrimaryBg,
+                titleStyle: styles.navPrimaryText
             };
         }
     };

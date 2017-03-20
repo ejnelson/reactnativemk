@@ -4,7 +4,7 @@ import AllLists from './AllLists/AllLists';
 import ListDetails from './ListDetails';
 import CreateList from './CreateList';
 import CreateListItem from './CreateListItem';
-import KinList from '../Kin/KinList/KinList';
+import KinList from '../Kin/KinList';
 
 export default class Lists extends Component {
     constructor(props, context) {
