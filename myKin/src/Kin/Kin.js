@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { StackNavigator } from 'react-navigation';
 import KinList from './KinList';
-import CreateKin from './CreateKin';
+import CreateKin from './CreateKinRoot';
 import KinDetail from '../Shared/KinDetail/KinDetail';
 
 /**
